@@ -1,18 +1,23 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'expo-dropdown-multiselect';
+import { StyleSheet, View } from 'react-native';
+import { DropdownMultiselectView } from 'expo-dropdown-multiselect';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
+  const [selectedItem, setSelectedItem] = React.useState<any>([]);
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
+    <View style={{ flex: 1,  justifyContent:"center", alignItems:"center", }}>
+      <DropdownMultiselectView
+        data={[
+          { key: 1, value: 'orange' },
+          { key: 2, value: 'apple' },
+          { key: 3, value: 'banana' },
+        ]}
+        displayKey="value"
+        displayValue="key"
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+      />
     </View>
   );
 }
